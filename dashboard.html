@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"	content="SEPA Project Website"/>
+        <meta name="keywords"		  content="SEPA"/>
+        <meta name="author"			  content="Group21"/>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+
+    </head>
+        <body>
+            <header>
+                <h1>Temp And Humid</h1>
+            </header>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="control.html">Control</a></li>
+                    <li><a href="notification.html">Notification</a></li>
+                    <li><a href="setting.html">Setting</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <div class="room-selection">
+                <label for="room">Select Room:</label>
+                <select name="room" id="room">
+                    <option value="living-room">Living Room</option>
+                    <option value="kitchen">Kitchen Room</option>
+                    <option value="bedroom">Bedroom</option>
+                    <option value="bathroom">Bathroom</option>
+                </select>
+            </div>
+        
+            <section class="dashboard">
+                <div class="upper-boards">
+                    <div class="board temperature">
+                        <h2>Temperature</h2>
+                        <br>
+                        <p>Last update: <span id="temperature-update">--</span></p>
+                        <div class="time-info">
+                            <p>Date: <span id="temperature-date">--</span></p>
+                            <p>Time: <span id="temperature-time">--</span></p>
+                        </div>
+                        <hr>
+                        
+                        <div class="line">
+                            <p>High: <span id="temperature-high">--</span></p>
+                            <p>Low: <span id="temperature-low">--</span></p>
+                            <p>Average: <span id="temperature-average">--</span></p>
+                        </div>
+                        
+                    </div>
+                    <div class="board humidity">
+                        <h2>Humidity</h2><br>
+                        <p>Last update: <span id="humidity-update">--</span></p>
+                        <div class="time-info">
+                            <p>Date: <span id="humidity-date">--</span></p>
+                            <p>Time: <span id="humidity-time">--</span></p>
+                        </div>
+                        <hr>
+
+                        <div class="line">
+                            <p>High: <span id="humidity-high">--</span></p>
+                            <p>Low: <span id="humidity-low">--</span></p>
+                            <p>Average: <span id="humidity-average">--</span></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                    
+                
+                
+                <div class="board graph">
+                    <h2>Graph</h2>
+                    <div class="date-range">
+                        <label for="start-date">Display Date From:</label>
+                        <input type="date" id="start-date">
+                        <label for="end-date">To:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                    <div id="graph"><br>
+                        <img src="images/example1.png" alt="Dashboard photo" class="dashboard-photo">
+                        <!-- Add the diagram here later -->
+                    </div>
+                </div>
+            </section>
+        </body>
+        </html>
+        
