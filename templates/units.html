@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div>
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Measurement</th>
+          <th>Units</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+                <div class="badge badge-danger rounded-pill">
+                    <i class="fa-solid fa-temperature-half fa-2xl"></i> Temperature
+                </div>
+            </div>
+          </td>
+          <td>
+            <div class="badge badge-danger rounded-pill">
+                °C Degrees Celsius
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <div class="d-flex align-items-center">
+                    <div class="badge badge-primary rounded-pill">
+                        <i class="fa-solid fa-droplet fa-2xl"></i> Humidity
+                    </div>
+                </div>
+          </td>
+          <td>           
+                <div class="badge badge-primary rounded-pill">
+                    % Percentage
+                </div>   
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <div class="d-flex align-items-center">
+                    <div class="badge badge-warning rounded-pill">
+                        <i class="fa-regular fa-lightbulb fa-2xl"></i> Light
+                    </div>
+                </div>
+          </td>
+          <td>
+                <div class="badge badge-warning rounded-pill">
+                    cd Candela
+                </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+{% endblock %}

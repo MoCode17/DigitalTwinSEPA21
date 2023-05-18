@@ -1,0 +1,144 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.nav-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-right: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #ccc;
+}
+
+.nav-menu .active {
+    font-weight: bold;
+}
+
+.dashboard {
+    /* display: flex;
+    justify-content: space-around; */
+    margin: 20px;
+}
+
+.board {
+    position: relative;
+    background-color: gray;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.board h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+.energy-consumption {
+    width: 96%;
+}
+.upper-boards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.upper-boards .board {
+    width: 45%;
+}
+.room-selection {
+    padding: 20px;
+}
+.room-selection #room  {
+    font-size: 20px;
+}
+#temperature-date #temperature-time {
+    float: right;
+}
+
+.time-info {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    text-align: right;
+    width: 100%;
+    bottom: 20px;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.line hr {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.faint-line {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    
+}
+
+.settings {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.settings form {
+    display: grid;
+    gap: 10px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* input[type="number"] {
+    -moz-appearance: textfield;
+} */
+.settings label {
+    font-size: 14px;
+    padding: 4px;
+}
+.settings input {
+    width: 20%;
+    height: 20px;
+    font-size: 14px;
+}
+#underconst {
+    float: center;
+    font-size: 40px;
+    padding-left: 20%;
+    color: red;
+}
+
+
+
