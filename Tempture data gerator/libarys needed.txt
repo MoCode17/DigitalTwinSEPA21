@@ -1,6 +1,0 @@
-pip install datetime
-pip install time
-pip install random
-pip install pandas
-pip install sqlalchemy 
-pip install pymysql
