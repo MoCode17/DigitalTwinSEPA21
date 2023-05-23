@@ -10,10 +10,21 @@ random.seed(time.time())
 temperature_temp = (random.randrange(150,300)/10)
 temperature1 = [temperature_temp]
 out_temp = (random.randrange(150,350)/10)
+
+b = 0
+c = 1
+
+spike = random.randrange(60, 100)
+
+check_day = 0
+check = 0
 minutes = int(input('how often do the sense record') or 10)
 days = int(input('how many days of data') or 14)
 a = int(((days*24)*60)/minutes)
-amount_of_sensors = int(input('how many sensors') or 4)
+
+start_year = int(input('What year do you want to start generating data') or 2022)
+clock = datetime.datetime(int(start_year),1,1,00,00,00)
+amount_of_sensors = int(input('how many sensors') or 8)
 m = int(input('the starting position of first sensor x') or 2)
 n = int(input('the starting position of first sensor y') or 2)
 u=int(input('how far apart are the sensors x') or 8)
@@ -28,11 +39,17 @@ sensor_df = pd.read_sql_table('sensors', con = engine)
 sensor_df.drop(sensor_df.index, inplace=True)
 sensor_df = sensor_df.drop('level_0', axis=1)
 df = pd.read_sql_table('readings', con = engine)
-df.drop(df.index, inplace=True)
 df = df.drop('index', axis=1)
+if int(input('do you what to deleat the data in the reading? 0 for no, 1 for yes') or 0) == 1:
+    df.drop(df.index, inplace=True)
+else:
+    print('\n')
+    df_temp = df.iloc[[-1]]
+    temperature_temp = df_temp.iat[0,3]
+    clock = df_temp.iat[0,2]
+    df.drop(df.index, inplace=True)
 
-print(sensor_df)
-print(df)
+
 
 for x in range(amount_of_sensors):
 
@@ -83,12 +100,7 @@ def out_side(outside,clock):
     outside = temp_restriction_out(outside)
     return outside
 
-b = 0
-clock = datetime.datetime(2023,1,1,00,00,00)
-spike = random.randrange(60, 100)
 
-check_day = 0
-check = 0
 def reset_spike(spike, outside):
 
     out = random.randrange(0, 1)
@@ -140,8 +152,11 @@ for x in range(a):
         add = (random.randrange(-5, 5) / 10)
         temperature_data[(y+1)].append(temp_restriction(compare_temp(temperature_temp, out_temp, add)))
 
-        df.loc[b] = [(b + 1), 'sensor2', clock, temperature_data[(y+1)][x], 'temperature']
+        df.loc[b] = [(b + 1), ('sensor' + str(c + 1)), clock, temperature_data[(y+1)][x], 'temperature']
         b = b + 1
+        c = c + 1
+
+    c = 1
 
     add_time = datetime.timedelta(minutes=+minutes)
     clock = clock + add_time
@@ -156,7 +171,7 @@ print(sensor_df)
 sensor_df.to_sql('sensors', engine, if_exists='replace')
 
 
-df.to_sql('readings', engine, if_exists='replace')
+df.to_sql('readings', engine, if_exists='append')
 print(df)
 
 
