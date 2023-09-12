@@ -1,41 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plot
 import pandas as pa
+import datetime as dt
+import time
 from scipy import stats
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import FunctionTransformer
 
-pd = pa.read_csv("dtdb.csv", nrows=1000000)
-
-pd = pd.loc[pd['sensorName'] == 'sensor1']
-#print(pd['time'])
-pd['time'] = pd['time'].str.split(' ').str[0]
-pd = pd.drop_duplicates(subset=['time'])
-print(pd)
+pd = pa.read_csv("week_data.csv", parse_dates=True)
 
 pd['timeIndex'] = np.arange(len(pd.index))
-print(pd)
 
-#lag model
-# pd['Lag_1'] = pd['readingValue'].shift(1)
 
-# X = pd.loc[:, ['Lag_1']]
-# X.dropna(inplace=True)
-# y = pd.loc[:, 'readingValue']
-# y, X = y.align(X, join='inner')
-# model = LinearRegression()
-# model.fit(X, y)
-
-# Linear regression
-X = pd.loc[:, ['timeIndex']]
-y = pd.loc[:, 'readingValue']
-
-model = LinearRegression()
-model.fit(X, y)
-
-y_pred = pa.Series(model.predict(X), index=X.index)
-
-# Set Matplotlib defaults
-#plot.style.use("seaborn-whitegrid")
 plot.rc("figure", autolayout=True, figsize=(11, 4))
 plot.rc(
     "axes",
@@ -53,18 +30,69 @@ plot_params = dict(
     legend=False,
 )
 
-## Lag plot
-# fig, ax = plot.subplots()
-# ax.plot(X['Lag_1'], y, '.', color='0.25')
-# ax.plot(X['Lag_1'], y_pred)
-# #ax.set_aspect('equal')
-# ax.set_ylabel('Temperature')
-# ax.set_xlabel('Lag_1')
-# ax.set_title('Lag Plot of Temperature Readings')
+# ## Lag plot
+# # fig, ax = plot.subplots()
+# # ax.plot(X['Lag_1'], y, '.', color='0.25')
+# # ax.plot(X['Lag_1'], y_pred)
+# # #ax.set_aspect('equal')
+# # ax.set_ylabel('Temperature')
+# # ax.set_xlabel('Lag_1')
+# # ax.set_title('Lag Plot of Temperature Readings')
 
-# Linear Regression plot
+# #Linear Regression plot
+# ax = y.plot(**plot_params)
+# ax = y_pred.plot(ax=ax, linewidth=3)
+# ax.set_title('Index Plot of Temperature')
+# plot.show()
+
+
+#######Time
+# print(y_pred)
+# print(model.intercept_)
+# print(model.coef_)
+# pd["time"] = pa.to_datetime(pd["time"], format="%Y-%m-%d %H-%M-%S")
+# pd['time'] = pd['time'].apply(lambda a: time.mktime(a.timetuple()))
+# print(pd['time'])
+# Linear regression
+#pd['Future'] = pd['readingValue'].shift(-10)
+X = pd.loc[:, ['timeIndex']]
+#X.dropna(inplace=True)
+y = pd.loc[:, 'readingValue']
+#y, X = y.align(X, join='inner')
+X_train, X_test, y_train, y_test = train_test_split(
+    X,y,test_size=0.2,random_state=42
+    )
+modelx = LinearRegression()
+modelx.fit(X_train, y_train)
+print("Y- intercept: ", modelx.intercept_)
+print("Gradient coefficient: ", modelx.coef_)
+y_predx = pa.Series(modelx.predict(X), index=pd['time'])
 ax = y.plot(**plot_params)
-ax = y_pred.plot(ax=ax, linewidth=3)
-ax.set_title('Time Plot of Temperature')
-
+ax = y_predx.plot(ax=ax, linewidth=3)
+ax.set_title('Plot of Temperature')
 plot.show()
+
+
+###################
+#   Cyclical encoding, sin/cosine transformation
+###################
+
+# def sin_transformer(period):
+# 	return FunctionTransformer(lambda x: np.sin(x / period * 2 * np.pi))
+
+# def cos_transformer(period):
+# 	return FunctionTransformer(lambda x: np.cos(x / period * 2 * np.pi))
+
+# X_2 = pd.copy()
+# print(X_2['time'])
+
+# X_2["month_sin"] = sin_transformer(12).fit_transform(X_2)["month"]
+# X_2["month_cos"] = cos_transformer(12).fit_transform(X_2)["month"]
+
+# X_2["day_sin"] = sin_transformer(365).fit_transform(X_2)["day_of_year"]
+# X_2["day_cos"] = cos_transformer(365).fit_transform(X_2)["day_of_year"]
+
+# fig, ax = plot.subplots(2, 1, sharex=True, figsize=(16,8))
+# X_2[["month_sin", "month_cos"]].plot(ax=ax[0])
+# X_2[["day_sin", "day_cos"]].plot(ax=ax[1])
+# plot.suptitle("Cyclical encoding with sine/cosine transformation");
