@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 import pandas as pa
 import datetime as dt
 import time
@@ -13,8 +13,8 @@ pd = pa.read_csv("week_data.csv", parse_dates=True)
 pd['timeIndex'] = np.arange(len(pd.index))
 
 
-plot.rc("figure", autolayout=True, figsize=(11, 4))
-plot.rc(
+plt.rc("figure", autolayout=True, figsize=(11, 4))
+plt.rc(
     "axes",
     labelweight="bold",
     labelsize="large",
@@ -62,37 +62,41 @@ y = pd.loc[:, 'readingValue']
 X_train, X_test, y_train, y_test = train_test_split(
     X,y,test_size=0.2,random_state=42
     )
-modelx = LinearRegression()
-modelx.fit(X_train, y_train)
-print("Y- intercept: ", modelx.intercept_)
-print("Gradient coefficient: ", modelx.coef_)
-y_predx = pa.Series(modelx.predict(X), index=pd['time'])
+model = LinearRegression()
+model.fit(X_train, y_train)
+print("Y- intercept: ", model.intercept_)
+print("Gradient coefficient: ", model.coef_)
+y_pred = pa.Series(model.predict(X), index=pd['time'])
 ax = y.plot(**plot_params)
-ax = y_predx.plot(ax=ax, linewidth=3)
+ax = y_pred.plot(ax=ax, linewidth=3)
 ax.set_title('Plot of Temperature')
-plot.show()
+plt.show()
 
 
 ###################
 #   Cyclical encoding, sin/cosine transformation
 ###################
 
-# def sin_transformer(period):
-# 	return FunctionTransformer(lambda x: np.sin(x / period * 2 * np.pi))
+X_2 = pd.copy()
+X_2["time"] = pa.to_datetime(X_2["time"], format="%Y-%m-%d %H-%M-%S")
+X_2['hour'] = X_2['time'].dt.hour
+print(X_2['hour'])
 
-# def cos_transformer(period):
-# 	return FunctionTransformer(lambda x: np.cos(x / period * 2 * np.pi))
+X_2['hour_sin'] = np.sin(2 * np.pi * X_2['hour']/24.0)
+X_2['hour_cos'] = np.cos(2 * np.pi * X_2['hour']/24.0)
 
-# X_2 = pd.copy()
-# print(X_2['time'])
 
-# X_2["month_sin"] = sin_transformer(12).fit_transform(X_2)["month"]
-# X_2["month_cos"] = cos_transformer(12).fit_transform(X_2)["month"]
+X_2[['hour_sin', 'hour_cos']].plot()
+plt.suptitle("Cyclical encoding with sine/cosine transformation")
+plt.show()
 
-# X_2["day_sin"] = sin_transformer(365).fit_transform(X_2)["day_of_year"]
-# X_2["day_cos"] = cos_transformer(365).fit_transform(X_2)["day_of_year"]
+X_2_daily = X_2[['hour_sin', 'hour_cos']]
 
-# fig, ax = plot.subplots(2, 1, sharex=True, figsize=(16,8))
-# X_2[["month_sin", "month_cos"]].plot(ax=ax[0])
-# X_2[["day_sin", "day_cos"]].plot(ax=ax[1])
-# plot.suptitle("Cyclical encoding with sine/cosine transformation");
+model_2 = LinearRegression().fit(X_2_daily.iloc[:len(X_train)],
+								 y.iloc[:len(y_train)])
+
+y_pred_2 = pa.Series(model_2.predict(X_2_daily), index=pd['time'])
+y.plot(**plot_params)
+y_pred_2.plot()
+plt.suptitle('Plot of Cyclic Temperature')
+plt.show()
