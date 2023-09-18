@@ -15,3 +15,7 @@ nodemon -e js,scss index.js
 localhost:3000
 3. To stop the server go back to command prompt and enter:
 CTRL + C
+
+# Connecting to Supabase
+1. Install supabase-js in the directory using the command:
+npm install @supabase/supabase-js
