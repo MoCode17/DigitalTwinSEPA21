@@ -12,15 +12,69 @@
   <div class="jumbotron">
     <div class="row align-items-start">
         <div class="col">
-
-        </div>
-        <div class="col">
-
+          <div id="chart1"></div>
         </div>
     </div>
   </div>
 </main>
 <%- include('../partials/scripts'); %>
+<script>
+  var data = [];
+  var options = {
+      series: [{
+          data: data
+          }],
+      chart: {
+          id: 'chart1',
+          type: 'line',
+          height: 300,
+          toolbar: {
+              autoSelected: 'pan',
+              show: false
+          }
+      },
+  stroke: {
+      width: 3
+      },
+  dataLabels: {
+      enabled: false
+  },
+  fill: {
+      opacity: 1,
+      },
+  series: [],
+  title: {
+      text: 'Node 1 Temperature',
+  },
+  noData: {
+    text: 'Loading...'
+  },
+      xaxis: {
+        type: 'category',
+        tickPlacement: 'on',
+        labels: {
+          rotate: -45,
+          rotateAlways: true
+        }
+      }
+  };
 
+var chart = new ApexCharts(
+  document.querySelector("#chart1"),
+  options
+);
+
+chart.render();
+
+var url = 'scripts/readings.json';
+  
+  $.getJSON(url, function(response) {
+      data = response;
+      chart.updateSeries([{
+          name: 'Readings',
+          data: data
+      }]);
+  });
+</script>
 </body>
 </html>

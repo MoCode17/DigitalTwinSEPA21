@@ -22,7 +22,11 @@ router.get('/index', (req, res) => {
     res.render('pages/index');
 });
 
-router.get('/history', async (_, response) => {
+router.get('/history', (req, res) => {
+  res.render('pages/history');
+});
+
+router.get('/historyjson', async (_, response) => {
     try {
       let result = await supabase
       .from('Reading')
