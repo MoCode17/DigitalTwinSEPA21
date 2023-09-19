@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body id="body-pd">
+<header class="header" id="header">
+  <%- include('../partials/header'); %>
+</header>
+  <%- include('../partials/sidebar'); %>
+<main>
+  <div>
+    <div class="row align-items-start">
+        <div class="col">
+          <div class="row align-items-start">
+            <div id="map"></div>
+            <div class="col">
+              <div><%- include('../partials/summary'); %></div>
+            </div>
+          </div>
+          <div class="row align-items-start">
+            <div><%- include('../partials/action'); %></div>
+          </div>
+        </div>
+        
+        <div class="col">
+          <h4><b>Insights</b></h4>
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col-sm-2 p-2 ml-4 mb-2">
+                  <label for="month_picker">Select Month</label>
+                </div>
+                <div class="col-sm-4 p-2 mr-4 mb-1">
+                  <input type="month" id="month_picker" name="month_picker" min="2023-05" max="2023-09" value="2023-09" /> 
+                </div>
+              </div>
+              <div id="chart1"></div>
+            </div>
+            
+            <div class="col">
+              
+              <div class="row">
+                <div class="col-sm-2 p-2 ml-4 mb-2">
+                  <label for="date_picker">Select Time</label>
+                </div>
+                <div class="col-sm-4 p-2 mr-4 mb-1">
+                  <input type="time" id="time_picker" name="time_picker" value="10:00" /> 
+                </div>
+              </div>
+              <div id="chart3"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row">
+              <div class="col-sm-2 p-2 ml-4 mb-2">
+                <label for="date_picker">Select Date</label>
+              </div>
+              <div class="col-sm-4 p-2 mr-4 mb-1">
+                <input type="date" id="date_picker" name="month_picker" min="2023-08-01" value="2023-09-15" /> 
+              </div>
+            </div>
+            <div id="chart2"></div>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</main>
+<%- include('../partials/scripts'); %>
+<%- include('../partials/mapjs'); %>
+<script>
+  var data = [];
+  var options = {
+      series: [{
+          data: data
+          }],
+      chart: {
+          id: 'chart1',
+          type: 'bar',
+          height: 300,
+          toolbar: {
+              autoSelected: 'pan',
+              show: false
+          }
+      },
+  stroke: {
+      width: 3
+      },
+  dataLabels: {
+      enabled: false
+  },
+  fill: {
+      opacity: 1,
+      },
+  series: [],
+  title: {
+      text: 'Daily Averages September 2023',
+  },
+  noData: {
+    text: 'Loading...'
+  },
+      xaxis: {
+        type: 'datetime',
+        labels: {
+          datetimeUTC: false,
+          format: 'dd MMM',
+          show: true
+        }
+      }
+  };
+
+var chart = new ApexCharts(
+  document.querySelector("#chart1"),
+  options
+);
+
+chart.render();
+
+var url = 'scripts/average.json';
+  
+  $.getJSON(url, function(response) {
+      data = response;
+      chart.updateSeries([{
+          name: 'Temperature by Hour of Day',
+          data: data
+      }]);
+  });
+
+  var options = {
+      series: [{
+          data: data
+          }],
+      chart: {
+          id: 'chart3',
+          type: 'bar',
+          height: 300,
+          toolbar: {
+              autoSelected: 'pan',
+              show: false
+          }
+      },
+  stroke: {
+      width: 3
+      },
+  dataLabels: {
+      enabled: false
+  },
+  fill: {
+      opacity: 1,
+      },
+  series: [],
+  title: {
+      text: 'Temperature at 10:00 AM for September 2023',
+  },
+  noData: {
+    text: 'Loading...'
+  },
+      xaxis: {
+        type: 'datetime',
+        labels: {
+          datetimeUTC: false,
+          format: 'dd MMM',
+          show: true
+        }
+      }
+  };
+
+  var chart3 = new ApexCharts(
+  document.querySelector("#chart3"),
+  options
+);
+
+chart3.render()
+
+url = 'scripts/hour.json';
+
+  $.getJSON(url, function(response) {
+      data = response;
+      chart3.updateSeries([{
+          name: 'Temperature at 10:00 AM for September 2023',
+          data: data
+      }]);
+  });
+
+options = {
+    series: [{
+          data: data
+          }],
+      chart: {
+          id: 'chart2',
+          type: 'line',
+          height: 300,
+          toolbar: {
+              autoSelected: 'pan',
+              show: false
+          }
+      },
+  stroke: {
+      width: 3
+      },
+  dataLabels: {
+      enabled: false
+  },
+  fill: {
+      opacity: 1,
+      },
+  series: [],
+  title: {
+      text: 'Temperature for September 15 2023',
+  },
+  noData: {
+    text: 'Loading...'
+  },
+      xaxis: {
+        type: 'datetime',
+        labels: {
+          datetimeUTC: false,
+          format: 'HH:00',
+          show: true
+        }
+      }
+  };
+
+var chart2 = new ApexCharts(
+  document.querySelector("#chart2"),
+  options
+);
+
+chart2.render();
+
+url = 'scripts/today.json';
+
+$.getJSON(url, function(response) {
+      data = response;
+      chart2.updateSeries([{
+          name: 'Temperature for September 15 2023',
+          data: data
+      }]);
+  });
+
+</script>
+</body>
+</html>
