@@ -1,8 +1,8 @@
 # DigitalTwinSEPA21
 
 # For Mac:
-Go to the directory with folder
-$ python  -m venv .venv
-$ pip install -r requirements.txt
-$ cd DT
-$ cd python app.py
+1. Go to the directory with folder
+2. $ python  -m venv .venv
+3. $ pip install -r requirements.txt
+4. $ cd DT
+5. $ cd python app.py
