@@ -4,5 +4,5 @@
 1. Go to the directory with folder
 2. $ python  -m venv .venv
 3. $ pip install -r requirements.txt
-4. $ cd DT
-5. $ python app.py
+4. .venv/bin/activate
+5. $ python DT/app.py
