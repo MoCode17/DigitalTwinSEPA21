@@ -1,6 +1,6 @@
 # DigitalTwinSEPA21
 
-For Mac:
+# For Mac:
 Go to the directory with folder
 $ python  -m venv .venv
 $ pip install -r requirements.txt
