@@ -1,9 +1,36 @@
+
 var data = [];
+
+// Options for chart1
 var options = {
     series: [{
         data: data
-        }],
+    }],
+    colors: ['#FF5733', '#33FF57', '#3357FF', '#F4D03F'],
+    grid: {
+        borderColor: '#e0e0e0',
+        row: {
+            colors: ['rgba(255,255,255,0.5)', 'rgba(240,240,240,0.5)']
+        }
+    },
+    tooltip: {
+        theme: 'dark',
+        style: {
+            fontSize: '14px',
+            fontFamily: 'Nunito, sans-serif'
+        }
+    },
+    markers: {
+        size: 6,
+        colors: ['#FF5733'],
+        strokeColors: '#fff',
+        strokeWidth: 2,
+        hover: {
+            size: 8,
+        }
+    },
     chart: {
+        colors: ['#FF5733', '#33FF57', '#3357FF', '#F4D03F'],
         id: 'chart1',
         type: 'bar',
         height: 300,
@@ -12,34 +39,30 @@ var options = {
             show: false
         }
     },
-stroke: {
-    width: 3
+    stroke: {
+        width: 3
     },
-dataLabels: {
-    enabled: false
-},
-fill: {
-    opacity: 1,
+    dataLabels: {
+        enabled: false
     },
-series: [],
-noData: {
-  text: 'Loading...'
-},
+    fill: {
+        opacity: 1,
+
+    },
+    noData: {
+        text: 'Loading...'
+    },
     xaxis: {
-      type: 'datetime',
-      labels: {
-        datetimeUTC: false,
-        format: 'dd MMM',
-        show: true
-      }
+        type: 'datetime',
+        labels: {
+            datetimeUTC: false,
+            format: 'dd MMM',
+            show: true
+        }
     }
 };
 
-var chart1 = new ApexCharts(
-document.querySelector("#chart1"),
-options
-);
-
+var chart1 = new ApexCharts(document.querySelector("#chart1"), options);
 chart1.render();
 
 var url = '/selectmonth';
@@ -58,7 +81,9 @@ var options = {
     series: [{
         data: data
         }],
+    colors: ['#6f42c1'],
     chart: {
+
         id: 'chart3',
         type: 'bar',
         height: 300,
@@ -111,7 +136,9 @@ options = {
   series: [{
         data: data
         }],
+    colors: ['#28a745'],
     chart: {
+        ccolors: ['#28a745'],
         id: 'chart2',
         type: 'line',
         height: 300,
