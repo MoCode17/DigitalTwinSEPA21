@@ -1,0 +1,60 @@
+<div class="col">
+    <h4><b>Insights</b></h4>
+    <div class="row">
+
+      <div class="col"style="background-color: #F5F5F5;">
+        <div class="row">
+
+          <div class="col-sm-2 p-2 ml-4 mb-2 ">
+            <label for="month_picker" style="color: orange;">Select Month</label>
+          </div>
+
+          <div class="col-sm-4 p-2 mr-4 mb-1">
+            <input type="month" id="month_picker" name="month_picker" min="2023-05" max="2023-09" value="2023-09" style="border: 1px solid orange; background-color: rgba(255, 165, 0, 0.5);"/>
+          </div>
+
+        </div>
+        <div class="row" id="month_text">Average Temperatures for September 2023</div>
+        <div id="chart1"></div>
+
+      </div>
+      
+      <div class="col" style="background-color: #F5F5F5;">
+
+        <div class="row">
+
+          <div class="col-sm-2 p-2 ml-4 mb-2">
+            <label for="time_picker" style="color: purple;">Select Time</label>
+          </div>
+
+          <div class="col-sm-4 p-2 mr-4 mb-1">
+            <input type="time" id="time_picker" name="time_picker" value="10:00" style="border: 1px solid purple; background-color: rgba(128, 0, 128, 0.5);"/>
+          </div>
+
+        </div>
+        <div class="row" id="time_text">Temperature Distribution for 10:00 AM in September 2023</div>
+        <div id="chart3"></div>
+
+      </div>
+
+    </div>
+
+    <div class="row" style="background-color: #F5F5F5;">
+
+      <div class="row">
+
+        <div class="col-sm-2 p-2 ml-4 mb-2" >
+          <label for="date_picker" style="color: green;">Select Date</label>
+        </div>
+
+        <div class="col-sm-4 p-2 mr-4 mb-1">
+          <input type="date" id="date_picker" name="date_picker" min="2023-08-01" max="2023-09-22" value="2023-09-22" style="border: 1px solid green; background-color: rgba(0, 128, 0, 0.5);"/>
+        </div>
+
+      </div>
+      <div class="row" id="date_text">Temperature for September 22 2023</div>
+      <div id="chart2"></div>
+      
+    </div>
+
+ </div>

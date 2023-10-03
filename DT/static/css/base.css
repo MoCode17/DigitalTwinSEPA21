@@ -1,0 +1,19 @@
+<style>
+@font-face {
+    font-family: "Circular STD";
+    src: url("/static/fonts/circular-std.ttf");
+}
+nav a {
+    //color: #090d80;
+    //font-size: 2em;
+    //margin-left: 50px;
+    //text-decoration: none;
+    font-family: Circular STD;
+}
+
+#clock {
+    font-size: 1.1em;
+}
+
+
+</style>
