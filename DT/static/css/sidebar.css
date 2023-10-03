@@ -8,10 +8,10 @@
 :root {
   --header-height: 3rem;
   --nav-width: 68px;
-  --first-color: #000000;
-  --first-color-light: #f7f6fb;
+  --first-color: #1B4E70; /* Updated color */
+  --first-color-light: white; /* Updated color */
   --white-color: #f7f6fb;
-  --body-font: "Circular STD", sans-serif;
+  --body-font: "Circular STD", "Nunito", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
 }
@@ -120,7 +120,7 @@ a {
 }
 
 .nav_link:hover {
-  color: var(--first-color-light);
+  color: red;
 }
 
 .nav_icon {
@@ -147,6 +147,7 @@ a {
   height: 32px;
   background-color: var(--first-color-light);
 }
+
 
 .height-100 {
   height: 100vh;
