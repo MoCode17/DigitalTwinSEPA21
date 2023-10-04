@@ -147,12 +147,6 @@ $.getJSON(url,
     {month:date.getMonth() + 1}
     ,function(response) {
     data = response;
-<<<<<<< Updated upstream
-    charts[0].updateSeries([{
-        name: "Temperature",
-        data: data
-    }]);
-=======
             charts[0].updateOptions({
                 series: [{
                     name: "Temperature",
@@ -191,7 +185,6 @@ $.getJSON(url,
                     }
                 }
             });
->>>>>>> Stashed changes
 });
 
 // Updates date graph with data from db
@@ -201,28 +194,6 @@ $.getJSON(url,
     {date: currentDate},
     function(response) {
     data = response;
-<<<<<<< Updated upstream
-    charts[1].updateSeries([{
-        name: "Temperature",
-        data: data
-    }]);
-});
-
-// Updates date graph with data from db using the JQuery getJSON function
-// Parameters are date in integer (1-12) and time in format (HH:mm) 
-url = '/selecttime';
-$.getJSON(url, 
-    {month: date.getMonth() + 1,
-    time: defaultTime},
-    function(response) {
-    data = response;
-    charts[2].updateSeries([{
-        name: "Temperature",
-        data: data
-    }]);
-});
-
-=======
     charts[1].updateOptions({
         series: [{
             name: "Temperature",
@@ -249,7 +220,6 @@ $.getJSON(url,
     });
 });
 
->>>>>>> Stashed changes
 // Function for when month input is changed
 monthSelect.onchange = () => {
     generateMonthTitle();
