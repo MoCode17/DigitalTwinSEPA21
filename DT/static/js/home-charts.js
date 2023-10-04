@@ -160,6 +160,7 @@ $.getJSON(url,
     {date: currentDate},
     function(response) {
     data = response;
+<<<<<<< Updated upstream
     charts[1].updateSeries([{
         name: "Temperature",
         data: data
