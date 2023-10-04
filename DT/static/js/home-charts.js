@@ -147,10 +147,51 @@ $.getJSON(url,
     {month:date.getMonth() + 1}
     ,function(response) {
     data = response;
+<<<<<<< Updated upstream
     charts[0].updateSeries([{
         name: "Temperature",
         data: data
     }]);
+=======
+            charts[0].updateOptions({
+                series: [{
+                    name: "Temperature",
+                    data: data
+                }],
+                colors: ['#FF5733'],
+                grid: {
+                    borderColor: '#e0e0e0',
+                    row: {
+                        colors: ['rgba(255,255,255,0.5)', 'rgba(240,240,240,0.5)']
+                    }
+                },
+                tooltip: {
+                    theme: 'dark',
+                    style: {
+                        fontSize: '14px',
+                        fontFamily: 'Nunito, sans-serif'
+                    }
+                },
+                markers: {
+                    size: 6,
+                    colors: ['#FF5733'],
+                    strokeColors: '#fff',
+                    strokeWidth: 2,
+                    hover: {
+                        size: 8,
+                    }
+                },
+                chart: {
+                    colors: ['#FF5733'],
+                    type: 'bar',
+                    height: 300,
+                    toolbar: {
+                        autoSelected: 'pan',
+                        show: false
+                    }
+                }
+            });
+>>>>>>> Stashed changes
 });
 
 // Updates date graph with data from db
@@ -181,6 +222,34 @@ $.getJSON(url,
     }]);
 });
 
+=======
+    charts[1].updateOptions({
+        series: [{
+            name: "Temperature",
+            data: data
+        }],
+        colors: ['#28A745']
+    });
+});
+
+// Updates date graph with data from db using the JQuery getJSON function
+// Parameters are date in integer (1-12) and time in format (HH:mm) 
+url = '/selecttime';
+$.getJSON(url, 
+    {month: date.getMonth() + 1,
+    time: defaultTime},
+    function(response) {
+    data = response;
+    charts[2].updateOptions({
+        series: [{
+            name: "Temperature",
+            data: data
+        }],
+        colors: ['#6F42C1']
+    });
+});
+
+>>>>>>> Stashed changes
 // Function for when month input is changed
 monthSelect.onchange = () => {
     generateMonthTitle();
