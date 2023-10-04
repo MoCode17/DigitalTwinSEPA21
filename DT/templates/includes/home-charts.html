@@ -1,0 +1,60 @@
+<div class="col">
+    <h4><b>Insights</b></h4>
+    <div class="row">
+
+      <div class="col">
+        <div class="row">
+
+          <div class="col-sm-2 p-2 ml-4 mb-2">
+            <label for="month_picker">Select Month</label>
+          </div>
+
+          <div class="col-sm-4 p-2 mr-4 mb-1">
+            <input type="month" id="month_picker" name="month_picker" min="2023-05"/> 
+          </div>
+
+        </div>
+        <div class="row" id="month_text">Average Temperatures</div>
+        <div id="chart1"></div>
+
+      </div>
+      
+      <div class="col">
+
+        <div class="row">
+
+          <div class="col-sm-2 p-2 ml-4 mb-2">
+            <label for="time_picker">Select Time</label>
+          </div>
+
+          <div class="col-sm-4 p-2 mr-4 mb-1">
+            <input type="time" id="time_picker" name="time_picker" step="3600000"/> 
+          </div>
+
+        </div>
+        <div class="row" id="time_text">Temperature Distribution</div>
+        <div id="chart3"></div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="row">
+
+        <div class="col-sm-2 p-2 ml-4 mb-2">
+          <label for="date_picker">Select Date</label>
+        </div>
+
+        <div class="col-sm-4 p-2 mr-4 mb-1">
+          <input type="date" id="date_picker" name="date_picker" min="2023-08-01"/> 
+        </div>
+
+      </div>
+      <div class="row" id="date_text">Temperature</div>
+      <div id="chart2"></div>
+      
+    </div>
+
+ </div>
