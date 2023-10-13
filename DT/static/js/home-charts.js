@@ -133,10 +133,10 @@ data = [];
 charts.push(drawChart(data, "chart1",'dd MMM', 'bar', false));
 // charts[0] is the averages in a month bar graph
 charts[0].render();
-charts.push(drawChart(data, "chart2", 'HH:00', 'line', true));
+charts.push(drawChart(data, "chart2", 'HH:00', 'line', false));
 // charts[1] is the graph for the hourly readings in a day
 charts[1].render();
-charts.push(drawChart(data, "chart3", 'dd MMM', 'bar', true));
+charts.push(drawChart(data, "chart3", 'dd MMM', 'bar', false));
 // charts[2] is the graph that shows each reading for an hour in a month
 charts[2].render();
 

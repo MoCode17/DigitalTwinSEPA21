@@ -34,6 +34,7 @@ computer_icon = L.divIcon({
   });
 
   function getDateString(readingTime) {
+    console.log(readingTime);
     var readingDate = new Date(readingTime);
     var readingDateStr = ("0" + readingDate.getDate()).slice(-2) + '/' + ("0" + (readingDate.getMonth() + 1)).slice(-2) + '/' + readingDate.getFullYear() + ' ' + ("0" + readingDate.getHours()).slice(-2) + ':' + ("0" + readingDate.getMinutes()).slice(-2) + ':' + ("0" + readingDate.getSeconds()).slice(-2);
     return readingDateStr;
