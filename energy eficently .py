@@ -29,12 +29,6 @@ thermal_transmittance_walls = 40  #how thermal conductive the walls is. the lowe
 
 
 
-
-
-
-
-
-
 #constant
 minit = 00
 hour = 00
@@ -51,6 +45,9 @@ room_lenth = 8.662 #m
 room_with = 8.36 #m
 door_hight = 2.62 #m
 door_with = 1.47 #m
+output_per_hour = [4]
+output = []
+
 
 
 
@@ -130,12 +127,14 @@ for i in range(0, 24 * 2):  # for every 30 minutes in 24 hours
     elif door_open == 'r':
         current_temp += calculate_temperature_change_door(current_temp, random.randint(5, 31))
 
-    #prints out the values in the table
-    print( heater_on, "   |", round(current_temp), "     |", hour, ":", minit)
+    output_per_hour = [heater_on,round(current_temp), hour,minit]
+    output.append(output_per_hour)
 
     minit = minit + time_minutes
     if minit == 60:
         hour = hour + 1
         minit = 00
 
+for i in range(0, len(output)):
+    print(output[i][0], "   |", output[i][1], "     |", output[i][2], ":", output[i][3])
 
